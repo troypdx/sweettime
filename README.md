@@ -1,4 +1,4 @@
-# sweettime
+# SweetTime!
 A Web-Based Time Tracking System
 
 Welcome to SweetTime! a web-based time tracking system especially tailored for tax preparation firms. This README provides essential information about using the system to manage Employee profiles, Time Cards, and the reports available to SweetTime! administrators.
