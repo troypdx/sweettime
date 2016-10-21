@@ -74,4 +74,7 @@ SweetTime! is written with the MySQL and PHP for easy deployment to in-house or 
 4. logincheck.php - confirm that log in credentials are satisfied
 5. login_process.php - validate log in credentials
 6. logout_process.php - log out process
-7. sweettime.sql - MySQL tables with default Employee profiles and sample data
+7. mobile_navbar.js - JS for a responsive nav bar
+8. prog_scroll.js - JS for progressive scroll
+9. sweettime.css - a few styles 
+10. sweettime.sql - MySQL tables with default Employee profiles and sample data
