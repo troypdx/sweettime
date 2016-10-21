@@ -1,7 +1,8 @@
 <!--
   Name: Troy Scott
-  Date: September, 2016
+  Date: October, 2016
   Email: troy_pdx@fastmail.fm
+
   Function: View the details of the requested Time Card
 -->
 
@@ -42,7 +43,6 @@
 
 ?>
 
-<!DOCTYPE html>
 <html>
 <head>
   <title>Time Records | SweetTime!</title>
@@ -51,19 +51,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="sweettime.css">
 
   <!-- Essentials for Morris.js Charts -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-
-  <style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-    .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-    .fa-tree,.fa-briefcase,.fa-file-text,.fa-coffee {font-size:200px}
-  </style>
-
 </head>
 <body>
   <!-- Navbar -->
@@ -126,11 +120,11 @@
         <div class="w3-content w3-center" id="bar-timecard" style="height: 175px; width: 350px;" ></div>
         <p class="w3-center">Total Combined Hours Tax + Edu</p>
       </div>
-    </div>
+    </div> <!-- end w3-content -->
 
     <div class="w3-content">
-        <div class="w3-responsive">
-        <table class="w3-table w3-bordered w3-medium">
+      <div class="w3-responsive">
+        <table class="w3-table w3-bordered w3-medium w3-text-white">
           <tr>
             <th><br/>Date</th>
             <th>Work<br/>Type</th>
@@ -303,11 +297,10 @@
           <td colspan=3>Payroll Estimate Total</td>
           <td colspan=2>$<?php print($payrollTot) ?></td>
         </tr>
-      </table>
-      </div>
+        </table>
+      </div> <!-- end w3-responsive -->
 
     </div> <!-- end w3-content -->
-
 
   </div> <!-- end w3-container -->
 
@@ -317,81 +310,8 @@
       <p class="w3-margin w3-medium">Copyright (c) 2016 Troy Scott</p>
   </div>
 
+  <script type="text/javascript" src="mobile_navbar.js"></script>
   <script>
-  // Used to toggle the menu on small screens when clicking on the menu button
-  function myFunction() {
-      var x = document.getElementById("navDemo");
-      if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-      } else {
-          x.className = x.className.replace(" w3-show", "");
-      }
-  }
-  </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script>
-  $(function() {
-    $('a[href*="#"]:not([href="#"])').click(function() {
-      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-        if (target.length) {
-          $('html, body').animate({
-            scrollTop: target.offset().top
-          }, 1000);
-          return false;
-        }
-      }
-    });
-  });
-  </script>
-
-  <script>
-    /*
-    Morris.Line({
-      // ID of the element in which to draw the chart.
-      element: 'myfirstchart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
-      data: [
-        { year: '2008', value: 20 },
-        { year: '2009', value: 10 },
-        { year: '2010', value: 5 },
-        { year: '2011', value: 5 },
-        { year: '2012', value: 20 }
-      ],
-      // The name of the data record attribute that contains x-values.
-      xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
-      ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
-      labels: ['Value']
-    });
-
-    Morris.Donut({
-      element: 'donut-timecard',
-      data: [
-        {label: "Download Sales", value: 12},
-        {label: "In-Store Sales", value: 30},
-        {label: "Mail-Order Sales", value: 20}
-      ]
-    });
-
-    Morris.Bar({
-      element: 'bar-timecard',
-      data: [
-        { y: 'Tax', a: "<?php print($timecardrow['twoWeekTotalRegTax']) ?>", b: "<?php print($timecardrow['twoWeekTotalOTTax']) ?>" },
-        { y: 'Edu', a: "<?php print($timecardrow['twoWeekTotalRegEdu']) ?>",  b: "<?php print($timecardrow['twoWeekTotalOTEdu']) ?>" }
-      ],
-      xkey: 'y',
-      ykeys: ['a', 'b'],
-      labels: ['Regular Hrs', 'OT Hrs'],
-      stacked: 'true'
-    });
-
-    */
-
     Morris.Bar({
       element: 'bar-timecard',
       data: [
@@ -406,11 +326,11 @@
             if(series.label == "Reg Hrs") return "#5DADE2";
             else if(series.label == "OT Hrs") return "#F4D03F";
           },
-      hideHover: 'auto',
-      gridTextColor: '#F8F9F9',
-      stacked: 'true'
-    });
-  </script>
+          hideHover: 'auto',
+          gridTextColor: '#F8F9F9',
+          stacked: 'true'
+        });
+    </script>
 
 </body>
 </html>

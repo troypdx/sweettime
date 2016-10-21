@@ -1,0 +1,18 @@
+/*
+  Name: Troy Scott
+  Date: October, 2016
+  Email: troy_pdx@fastmail.fm
+*/
+
+  body,h1,h2,h3,h4,h5,h6 {
+    font-family: "Lato", sans-serif
+  }
+  .w3-btn {
+    width:150px;
+  }
+  .w3-navbar,h1,button {
+    font-family: "Montserrat", sans-serif
+  }
+  .fa-tree,.fa-briefcase,.fa-file-text,.fa-coffee {
+    font-size:200px
+  }

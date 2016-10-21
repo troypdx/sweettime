@@ -1,7 +1,8 @@
 <!--
   Name: Troy Scott
-  Date: August, 2016
+  Date: October, 2016
   Email: troy_pdx@fastmail.fm
+
   Function: This module removes one Time Card and all Time Records related to it.
 -->
 

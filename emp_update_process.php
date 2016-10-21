@@ -2,7 +2,6 @@
   Name: Troy Scott
   Date: October, 2016
   Email: troy_pdx@fastmail.fm
-  Function: This module updates Employee profile data
 -->
 
 <?php
@@ -18,6 +17,8 @@
   $hash = password_hash($password, PASSWORD_DEFAULT);
   $administrator= $_REQUEST['administrator'];
   $rate= $_REQUEST['rate'];
+
+  // $sql = "SELECT ID, employees.employeeId, firstName, lastName, email, employeeTitle, password, adminFlag, rate FROM employees" . ";";
 
   $empsql= "UPDATE employees SET
           firstName='" .$first. "',

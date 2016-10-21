@@ -2,7 +2,6 @@
   Name: Troy Scott
   Date: October, 2016
   Email: troy_pdx@fastmail.fm
-  Function: This module provides a view of all Employee profiles
 -->
 
 <?php
@@ -30,7 +29,6 @@
   $result = mysql_query($sql) or die(mysql_error());
 ?>
 
-<!DOCTYPE html>
 <html>
 <head>
   <title>Employees | SweetTime</title>
@@ -39,27 +37,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-  <style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-    .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-    .fa-tree,.fa-briefcase,.fa-file-text,.fa-coffee {font-size:200px}
-    .button {
-      background-color: #4CAF50; /* Green  */
-      border-radius: 8px;
-      border: none;
-      color: white;
-      padding: 5px 5px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 14px;
-      margin: 4px 4px;
-      cursor: pointer;
-    }
-    .button1 {width: 250px;}
-    .button2 {width: 50%;}
-    .button3 {width: 100%; height: 100%}
-  </style>
+  <link rel="stylesheet" type="text/css" href="sweettime.css">
 </head>
 <body>
   <!-- Navbar -->
@@ -102,40 +80,53 @@
 
     <div class="w3-content">
       <div class="w3-responsive">
-      <table class="w3-table w3-bordered w3-medium">
-        <tr>
-          <th>Employee<br/>Id</th>
-          <th>Last<br/>Name</th>
-          <th>First<br/>Name</th>
-          <th>Email<br/>Address</th>
-          <th>Job<br/>Title</th>
-          <th><br/>Administrator</th>
-          <th>Hourly<br/>Rate</th>
-          <th>Time<br/>Cards</th>
-          <th><br/>Edit</th>
-          <th><br/>Delete</th>
-        </tr>
-
-        <?php
-          while($row = mysql_fetch_array($result)) {
-            print('<tr>
-            <td>' .$row['ID']. '</td>
-            <td>' .$row['lastName']. '</td>
-            <td>' .$row['firstName']. '</td>
-            <td>' .$row['email']. '</td>
-            <td>' .$row['employeeTitle']. '</td>
-            <td>' .$row['adminFlag']. '</td>
-            <td>' .$row['rate']. '</td>
-            <td><a href=\'timecard_view.php?id=' .$row['ID']. '\'><i class="fa fa-stack-overflow w3-text-blue w3-margin-right"></i></a></td>
-            <td><a href=\'emp_update.php?id=' .$row['ID']. '\'><i class="fa fa-pencil w3-text-green w3-margin-right"></i></a></td>
-            <td><a href=\'emp_delete.php?id=' .$row['ID']. '\'><i class="fa fa-remove w3-text-red w3-margin-right"></i></a></td></tr>');
-          }
-        ?>
-      </table>
-      </div>
+        <p>why black font?</p>
+        <table class="w3-table w3-bordered w3-medium w3-text-white">
+          <tr>
+            <th>Employee<br/>Id</th>
+            <th>Last<br/>Name</th>
+            <th>First<br/>Name</th>
+            <th>Email<br/>Address</th>
+            <th>Job<br/>Title</th>
+            <th><br/>Administrator</th>
+            <th>Hourly<br/>Rate</th>
+            <th>Time<br/>Cards</th>
+            <th><br/>Edit</th>
+            <th><br/>Delete</th>
+          </tr>
+          <?php
+            while($row = mysql_fetch_array($result)) {
+              /* Production Version
+              print('<tr>
+              <td>' .$row['ID']. '</td>
+              <td>' .$row['lastName']. '</td>
+              <td>' .$row['firstName']. '</td>
+              <td>' .$row['email']. '</td>
+              <td>' .$row['employeeTitle']. '</td>
+              <td>' .$row['adminFlag']. '</td>
+              <td>' .$row['rate']. '</td>
+              <td><a href=\'timecard_view.php?id=' .$row['ID']. '\'><i class="fa fa-stack-overflow w3-text-blue w3-margin-right"></i></a></td>
+              <td><a href=\'emp_update.php?id=' .$row['ID']. '\'><i class="fa fa-pencil w3-text-green w3-margin-right"></i></a></td>
+              <td><a href=\'emp_delete.php?id=' .$row['ID']. '\'><i class="fa fa-remove w3-text-red w3-margin-right"></i></a></td></tr>');
+              */
+              print('<tr>
+              <td>' .$row['ID']. '</td>
+              <td>' .$row['lastName']. '</td>
+              <td>' .$row['firstName']. '</td>
+              <td>' .$row['email']. '</td>
+              <td>' .$row['employeeTitle']. '</td>
+              <td>' .$row['adminFlag']. '</td>
+              <td>' .$row['rate']. '</td>
+              <td><a href=\'timecard_view.php?id=' .$row['ID']. '\'><i class="fa fa-stack-overflow w3-text-blue w3-margin-right"></i></a></td>
+              <td><i class="fa fa-pencil w3-text-white w3-margin-right"></i></td>
+              <td><i class="fa fa-remove w3-text-white w3-margin-right"></i></td></tr>');
+            }
+          ?>
+        </table>
+      </div> <!-- end w3-responsive -->
       <p>
       <form action="emp_insert_process.php?id=$row['ID']" method="post">
-        <table class="w3-table w3-medium">
+        <table class="w3-table w3-medium w3-text-white">
           <tr>
             <td colspan=2></td>
             <th><p w3-text-light-blue>New Employee Information:</p></th>
@@ -170,7 +161,7 @@
             <td>Rate:</td>
             <td><input type="text" name="rate"/></td>
             <td></td>
-            <td><input class="button button3" type="submit" value="Add Employee" /></td>
+            <td><input class="w3-btn w3-green w3-round" type="submit" value="Add Employee" /></td>
           </tr>
         </table>
       </form>
@@ -184,34 +175,7 @@
       <p class="w3-margin w3-medium">Copyright (c) 2016 Troy Scott</p>
   </div>
 
-  <script>
-  // Used to toggle the menu on small screens when clicking on the menu button
-  function myFunction() {
-      var x = document.getElementById("navDemo");
-      if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-      } else {
-          x.className = x.className.replace(" w3-show", "");
-      }
-  }
-  </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script>
-  $(function() {
-    $('a[href*="#"]:not([href="#"])').click(function() {
-      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-        if (target.length) {
-          $('html, body').animate({
-            scrollTop: target.offset().top
-          }, 1000);
-          return false;
-        }
-      }
-    });
-  });
-  </script>
+  <script src="mobile_navbar.js"></script>
 
 </body>
 </html>

@@ -47,33 +47,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="sweettime.css">
 
   <!-- Essentials for Morris.js Charts -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-
-  <style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-    .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-    .button {
-      background-color: #4CAF50; /* Green  */
-      border-radius: 8px;
-      border: none;
-      color: white;
-      padding: 5px 5px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 14px;
-      margin: 4px 4px;
-      cursor: pointer;
-    }
-    .button1 {width: 250px;}
-    .button2 {width: 50%;}
-    .button3 {width: 100%; height: 100%}
-  </style>
 
 </head>
 <body>
@@ -113,7 +93,7 @@
         Administrator: <?php print($adminFlag); ?> </p>
         <p class="w3-xlarge w3-text-light-blue">Pay Period Report: <br/><?php print($payPeriodStart); ?></p>
         <form action="report_payperiod_csv.php" method="post">
-        <input type="hidden" name="payPeriodStart" value="<?php print($payPeriodStart); ?>"/><input class="button button3" type="submit" value="Export CSV"/>
+        <input type="hidden" name="payPeriodStart" value="<?php print($payPeriodStart); ?>"/><input class="w3-btn w3-green w3-round" type="submit" value="Export CSV"/>
         </form>
       </div>
 
@@ -199,37 +179,9 @@
       <p class="w3-margin w3-medium">Copyright (c) 2016 Troy Scott</p>
   </div>
 
+  <script src="mobile_navbar.js"></script>
   <script>
-  // Used to toggle the menu on small screens when clicking on the menu button
-  function myFunction() {
-      var x = document.getElementById("navDemo");
-      if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-      } else {
-          x.className = x.className.replace(" w3-show", "");
-      }
-  }
-  </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script>
-  $(function() {
-    $('a[href*="#"]:not([href="#"])').click(function() {
-      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-        if (target.length) {
-          $('html, body').animate({
-            scrollTop: target.offset().top
-          }, 1000);
-          return false;
-        }
-      }
-    });
-  });
-  </script>
-
-  <script>
-    Morris.Bar({
+    new Morris.Bar({
       element: 'bar-payperiod',
       data: [
         { y: 'Hrs Tax', a: "<?php print($totalPayPeriodRegTax) ?>", b: "<?php print($totalPayPeriodOTTax) ?>" },
@@ -243,10 +195,10 @@
             if(series.label == "Reg Hrs") return "#5DADE2";
             else if(series.label == "OT Hrs") return "#F4D03F";
           },
-      hideHover: 'auto',
-      gridTextColor: '#F8F9F9',
-      stacked: 'true'
-    });
+          hideHover: 'auto',
+          gridTextColor: '#F8F9F9',
+          stacked: 'true'
+        });
   </script>
 
 </body>

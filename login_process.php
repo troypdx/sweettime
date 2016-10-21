@@ -29,16 +29,15 @@
 <!-- Create a HTML document if necessary to display user feedback -->
 <!DOCTYPE html>
 <html>
-<title>Log In Failure | SweetTime!</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<style>
-  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-  .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-</style>
+<head>
+  <title>Log In Failure | SweetTime!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="sweettime.css" />
+</head>
 <body>
   <!-- SweetTime! banner -->
   <div class="w3-container w3-light-grey w3-center w3-large">

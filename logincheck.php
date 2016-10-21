@@ -1,11 +1,5 @@
-<?php
-  /*
-  Name: Troy Scott
-  Date: October, 2016
-  Email: troy_pdx@fastmail.fm
 
-  Function: Check log in credentials
-  */
+<?php
 
   // My session start function support timestamp management
   function my_session_start() {

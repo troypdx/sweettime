@@ -2,7 +2,6 @@
   Name: Troy Scott
   Date: October, 2016
   Email: troy_pdx@fastmail.fm
-  Function: Delete a specific Time Record
 -->
 
 <?php

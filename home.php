@@ -2,7 +2,6 @@
   Name: Troy Scott
   Date: October, 2016
   Email: troy_pdx@fastmail.fm
-  Function: This module is the Administration landing page
 -->
 
 <?php
@@ -27,20 +26,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-  <style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-    .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-    .fa-tree,.fa-briefcase,.fa-file-text,.fa-coffee {font-size:200px}
-    </style>
-
+  <link rel="stylesheet" type="text/css" href="sweettime.css" />
 </head>
 <body>
   <!-- Navbar -->
   <ul class="w3-navbar w3-light-blue w3-card-2 w3-top w3-left-align w3-large">
-    <li><a href="home.php" class="w3-xlarge w3-padding-medium w3-white"><i class="fa fa-home"></i></a></li>
     <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
       <a class="w3-padding-large w3-hover-white w3-large w3-light-blue" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     </li>
+    <li><a href="home.php" class="w3-xlarge w3-padding-medium w3-white"><i class="fa fa-home"></i></a></li>
     <li class="w3-hide-small"><a href="emp_view.php" class="w3-padding-large w3-hover-white">Manage Employees</a></li>
     <li class="w3-hide-small"><a href="report_timecards.php" class="w3-padding-large w3-hover-white">Manage Time Cards</a></li>
     <li class="w3-hide-small"><a href="report_timerecs.php" class="w3-padding-large w3-hover-white">Manage Time Records</a></li>

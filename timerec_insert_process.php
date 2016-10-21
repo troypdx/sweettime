@@ -2,7 +2,6 @@
   Name: Troy Scott
   Date: September, 2016
   Email: troy_pdx@fastmail.fm
-  Function: Insert a Time Record 
 -->
 
 <?php

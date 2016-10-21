@@ -1,42 +1,24 @@
 <!--
   Name: Troy Scott
-  Date: September, 2016
+  Date: October, 2016
   Email: troy_pdx@fastmail.fm
 -->
 
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Home | SweetTime!</title>
+  <title>Login | SweetTime!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-  <style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-    .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-    .fa-tree,.fa-briefcase,.fa-file-text,.fa-coffee {font-size:200px}
-    .button {
-      background-color: #4CAF50; /* Green  */
-      border-radius: 8px;
-      border: none;
-      color: white;
-      padding: 5px 5px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 14px;
-      margin: 4px 4px;
-      cursor: pointer;
-    }
-    .button1 {width: 250px;}
-    .button2 {width: 50%;}
-    .button3 {width: 100%;}
-    </style>
-
+  <link rel="stylesheet" type="text/css" href="sweettime.css" />
 </head>
 <body>
+
+  <!-- GitHub Fork Me banner -->
+  <a href="https://github.com/troypdx/sweettime"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 
   <!-- SweetTime! banner -->
   <div class="w3-container w3-light-grey w3-center w3-large">
@@ -54,7 +36,6 @@
         </div>
         <div class="w3-twothird">
           <p>Welcome to SweetTime! a web-based time tracking system tailored for tax preparation firms. Please Log In using your registration credentials. Contact an administrator if you're unable to access the system.</p>
-          <p>
           <form action="login_process.php" method="post">
             <table>
               <tr>
@@ -71,12 +52,17 @@
               </tr>
               <tr>
                 <td colspan=3></td>
-                <td><input class="button button3" type="submit" value="Log In" /></td>
+                <td><input class="w3-btn w3-green w3-round" type="submit" value="Log In" /></td>
                 <td></td>
               </tr>
             </table>
           </form>
-          </p>
+
+          <p>This demonstration version of SweetTime! provides two sample user profiles:</p>
+          <lu>
+             <li>Employee Sample - Email Address: employee@gmail.com, Password: employee</li>
+             <li>Administrator Sample - Email Address: administrator@gmail.com, Password: administrator</li>
+          </lu>
 
         </div>
       </div>

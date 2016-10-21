@@ -2,6 +2,7 @@
   Name: Troy Scott
   Date: October, 2016
   Email: troy_pdx@fastmail.fm
+
   Function: Add a new Time Card for the requested Pay Period start date.
 -->
 
@@ -32,16 +33,15 @@
 <!-- Create a HTML document if necessary to display user feedback -->
 <!DOCTYPE html>
 <html>
-<title>Add Time Card Error | SweetTime!</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<style>
-  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-  .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-</style>
+<head>
+  <title>Add Time Card Error | SweetTime!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="sweettime.css" />
+</head>
 <body>
   <!-- Navbar -->
   <ul class="w3-navbar w3-light-blue w3-card-2 w3-top w3-left-align w3-large">

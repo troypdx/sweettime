@@ -1,11 +1,5 @@
-<?php
-  /*
-    Name: Troy Scott
-    Date: October, 2016
-    Email: troy_pdx@fastmail.fm
 
-    Function: Export Pay Period as CSV
-  */
+<?php
   $payPeriodStart = $_REQUEST['payPeriodStart'];
   session_start();
   require_once("logincheck.php");
