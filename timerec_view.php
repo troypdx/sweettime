@@ -24,8 +24,8 @@
   // Fetch Employee ID for the requested Time Card
   $tcsql = 'SELECT employeeId FROM timecards WHERE ID='.$requestTimeCardId.';';
   //echo $tcsql. '<br/>';
-  $tcresult = mysql_query($tcsql) or die(mysql_error());
-  $tcrow = mysql_fetch_array($tcresult);
+  $tcresult = mysqli_query($con,$tcsql) or die(mysqli_error($con));
+  $tcrow = mysqli_fetch_array($tcresult);
   $requestEmployeeId = $tcrow['employeeId'];
 
   // Fetch Employee details related to the requsted Time Card
@@ -38,8 +38,8 @@
       rate
     FROM employees WHERE ID='.$requestEmployeeId.';';
   // echo $empsql.'<br/>';
-  $empresult = mysql_query($empsql) or die(mysql_error());
-  $emprow = mysql_fetch_array($empresult) or die(mysql_error());
+  $empresult = mysqli_query($con,$empsql) or die(mysqli_error($con));
+  $emprow = mysqli_fetch_array($empresult) or die(mysqli_error($con));
 
 ?>
 
@@ -61,6 +61,7 @@
 </head>
 <body>
   <!-- Navbar -->
+
   <ul class="w3-navbar w3-light-blue w3-card-2 w3-top w3-left-align w3-large">
     <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
       <a class="w3-padding-large w3-hover-white w3-large w3-light-blue" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
@@ -72,6 +73,7 @@
     } ?>
     <li class="w3-hide-small"><a href="logout_process.php" class="w3-padding-large w3-hover-white">Log Out</a></li>
   </ul>
+
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
     <ul class="w3-navbar w3-left-align w3-large w3-black">
@@ -116,7 +118,7 @@
               </div>');
           }
         ?>
-        <p>This page displays the details of a Time Card with a summary of hours accumulated and an estimate of gross pay based on your hourly rate. You may <a href="timecard_update.php?id=<?php echo $timecardId; ?>">edit the details</a> of a Time Card in order to log your time-in/time-out activity and work notes.</p>
+        <p>This page displays the details of a Time Card with a summary of hours accumulated and an estimate of gross pay based on your hourly rate. You may <a href="timecard_update.php?id=<?php echo $requestTimeCardId; ?>">edit the details</a> of a Time Card in order to log your time-in/time-out activity and work notes.</p>
         <div class="w3-content w3-center" id="bar-timecard" style="height: 175px; width: 350px;" ></div>
         <p class="w3-center">Total Combined Hours Tax + Edu</p>
       </div>
@@ -161,7 +163,7 @@
 
               FROM timerecords WHERE timecardId = ' .$requestTimeCardId. ';';
 
-          $trresult = mysql_query($trsql) or die(mysql_error());
+          $trresult = mysqli_query($con,$trsql) or die(mysqli_error($con));
 
           $timecardsql = 'SELECT
                 ID,
@@ -190,15 +192,15 @@
               FROM timecards WHERE ID='.$requestTimeCardId.';';
 
           // echo $timecardsql;
-          $timecardresult = mysql_query($timecardsql) or die(mysql_error());
-          $timecardrow = mysql_fetch_array($timecardresult) or die(mysql_error());
+          $timecardresult = mysqli_query($con,$timecardsql) or die(mysqli_error($con));
+          $timecardrow = mysqli_fetch_array($timecardresult) or die(mysqli_error($con));
 
           $payrollReg = $timecardrow['payRate'] * ($timecardrow['twoWeekTotalRegTax'] + $timecardrow['twoWeekTotalRegEdu']);
           $payrollOT = 1.5 * $timecardrow['payRate'] * ($timecardrow['twoWeekTotalOTTax'] + $timecardrow['twoWeekTotalOTEdu']);
           $payrollTot = $payrollReg + $payrollOT;
 
           for ($x = 1; $x <= 7; $x++) {
-            $trrow = mysql_fetch_array($trresult);
+            $trrow = mysqli_fetch_array($trresult);
 
             print('<tr><td>' .$trrow['date']. '</td>'
             . '<td>' .$trrow['workType'].  '</td>'
@@ -233,7 +235,7 @@
           <?php
 
           for ($x = 1; $x <= 7; $x++) {
-            $trrow = mysql_fetch_array($trresult);
+            $trrow = mysqli_fetch_array($trresult);
 
             print('<tr><td>' . $trrow['date']           . '</td>'
             . '<td>' . $trrow['workType']       . '</td>'

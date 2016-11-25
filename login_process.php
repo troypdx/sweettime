@@ -19,10 +19,10 @@
       adminFlag,
       rate
     FROM employees WHERE email = \'' .$email. '\';';
-  // echo $empsql. '<br/>';
+  echo $empsql. '<br/>';
 
-  $empresult = mysql_query($empsql) or die(mysql_error());
-  $emprow = mysql_fetch_array($empresult);
+  $empresult = mysqli_query($con,$empsql);
+  $emprow = mysqli_fetch_array($empresult);
 
 ?>
 
@@ -80,15 +80,15 @@
             }
             else {
               print("However, the password is incorrect. <br/>Contact an administrator if you're unable to access the system.</p>");
-              print("<p>Return to the <a href='login.php'>Log In</a>.</p>");
-              //header("Location: login.php");
-              //exit;
+              //print("<p>Return to the <a href='login.php'>Log In</a>.</p>");
+              header("Location: login.php");
+              exit;
             }
           } else {
             print("<p>" .$email. " is not a recognized user. <br/>Contact an administrator if you're unable to access the system.</p>");
-            print("<p>Return to the <a href='login.php'>Log In</a>.</p>");
-            //header("Location: login.php");
-            //exit;
+            //print("<p>Return to the <a href='login.php'>Log In</a>.</p>");
+            header("Location: login.php");
+            exit;
           }
           ?>
 

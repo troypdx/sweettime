@@ -20,8 +20,8 @@
     FROM employees WHERE ID=' .$employeeId. ';';
 
   // echo($empsql);
-  $empresult = mysql_query($empsql) or die(mysql_error());
-  $emprow = mysql_fetch_array($empresult) or die(mysql_error());
+  $empresult = mysqli_query($con,$empsql) or die(mysql_error($con));
+  $emprow = mysqli_fetch_array($empresult) or die(mysql_error($con));
 
 ?>
 

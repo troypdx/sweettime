@@ -12,7 +12,7 @@
   require_once("../../db_connect.php");
   $sql = "DELETE FROM timerecords WHERE ID = '" .$timerecordId. "';";
   //echo($sql);
-  mysql_query($sql) or die(mysql_error());
+  mysqli_query($con,$sql) or die(mysqli_error($con));
   //print("Time Record " . $id . " deleted from the database.");
   //print("Return to the <a href='timerec_view.php'>Time Record view.</a>");
   header("Location: timerec_view.php?id=$timecardId");

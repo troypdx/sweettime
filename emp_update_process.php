@@ -31,8 +31,8 @@
 
   echo $empsql. '<br/>';
 
-  mysql_query($empsql);
-  mysql_close($conn);
+  mysqli_query($con,$empsql);
+  mysqli_close($con);
 
   //echo($employeeId. " successfully updated.<br/>");
   //echo("<br/>Go back to <a href='emp_view.php'>main page.</a>")

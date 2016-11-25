@@ -26,8 +26,8 @@
   // Fetch Employee ID for the requested Time Card
   $tcsql = 'SELECT employeeId FROM timecards WHERE ID='.$requestTimeCardId.';';
   //echo $tcsql. '<br/>';
-  $tcresult = mysql_query($tcsql) or die(mysql_error());
-  $tcrow = mysql_fetch_array($tcresult);
+  $tcresult = mysqli_query($con,$tcsql);
+  $tcrow = mysqli_fetch_array($tcresult);
   $requestEmployeeId = $tcrow['employeeId'];
 
   // Fetch Employee details related to the requsted Time Card
@@ -40,8 +40,8 @@
       rate
     FROM employees WHERE ID='.$requestEmployeeId.';';
   // echo $empsql.'<br/>';
-  $empresult = mysql_query($empsql) or die(mysql_error());
-  $emprow = mysql_fetch_array($empresult) or die(mysql_error());
+  $empresult = mysqli_query($con,$empsql) or die(mysqli_error($con));
+  $emprow = mysqli_fetch_array($empresult) or die(mysqli_error($con));
 
   $trsql = 'SELECT
         ID, timecardId, date, workType,
@@ -50,7 +50,7 @@
         notes, hrsTax, hrsEdu, payRate
         FROM timerecords WHERE timecardId='.$requestTimeCardId.';';
   // echo $trsql.'<br/>';
-  $trresult = mysql_query($trsql) or die(mysql_error());
+  $trresult = mysqli_query($con,$trsql) or die(mysqli_error($con));
 ?>
 
 <html>
@@ -141,7 +141,7 @@
         <!-- Responsive style form -->
         <form action="timecard_update_process.php" method="post">
         <?php for ($x = 1; $x <= 14; $x++):
-          $trrow = mysql_fetch_array($trresult);
+          $trrow = mysqli_fetch_array($trresult);
           $dateLabel = new Datetime($trrow['date']);
           ?>
           <div class="w3-row-padding">

@@ -3,7 +3,7 @@ A Web-Based Time Tracking System
 
 Welcome to SweetTime! a web-based time tracking system especially tailored for tax preparation firms. This README provides essential information about using the system to manage Employee profiles, Time Cards, and the reports available to SweetTime! administrators.
 
-See SweetTime! in action at [troyhscott.com](http://www.troyhscott.com/SweetTime/login.php). 
+See SweetTime! in action at [troyhscott.com](http://www.troyhscott.com/SweetTime/login.php).
 
 ## Time Tracking Essentials
 
@@ -33,13 +33,13 @@ SweetTime! is written with the MySQL and PHP for easy deployment to in-house or 
 |  1.  | Clone the sweettime repository |
 |  2.  | Create a MySQL database user with the following privileges: DELETE, INSERT, SELECT, and UPDATE |
 |  3.  | Create a MySQL database using the sweettime.sql file as a guideline. Two default Employee profiles with log in credentials to get you started. See the log in / password details in login.php. |
-|  4.  | Place the PHP sweettime files in your server directory (usually /var/www/html/SweetTime on a local LAMP server or public_html/SweetTime of a remote server). Place db_connect.php file two directories above the public directory (usually /var/www/ on a local LAMP server or /home/user of a remote server).  |
+|  4.  | Place the PHP sweettime files in your server directory (usually /var/www/html/SweetTime on a local LAMP server or public_html/SweetTime of a remote server). Place db_connect.php file two directories above the public directory (usually /var/www/ on a local LEMP/LAMP server or /home/user of a remote server).  |
 |  5.  | Modify db_connect.php to use the database user credentials required for your web server |
 |  6.  | Open login.php with your web browser |
 
 ## Compatibility
-* PHP - 5.5
-* MySQL - 5.5.52-MariaDB
+* PHP - 7.0.8-0ubuntu0.16.04.3
+* MySQL - Ver 14.14 Distrib 5.7.16, for Linux (x86_64)
 
 ## File Organization
 ### Time Cards
@@ -76,5 +76,5 @@ SweetTime! is written with the MySQL and PHP for easy deployment to in-house or 
 6. logout_process.php - log out process
 7. mobile_navbar.js - JS for a responsive nav bar
 8. prog_scroll.js - JS for progressive scroll
-9. sweettime.css - a few styles 
+9. sweettime.css - a few styles
 10. sweettime.sql - MySQL tables with default Employee profiles and sample data

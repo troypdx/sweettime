@@ -65,14 +65,29 @@
     <?php
     // Update 14 Time Records of the Time Card
     for ($key = 0; $key <= 13; $key++) {
+      /*
+      echo 'timerecordId[' .$key. ']: ' .$timerecordId[$key]. '<br>';
+      echo 'workType[' .$key. ']: ' .$workType[$key]. '<br>';
+      echo 'timeInAM[' .$key. ']: ' .$timeInAM[$key]. '<br>';
+      echo 'timeOutAM[' .$key. ']: ' .$timeOutAM[$key]. '<br>';
+      echo 'timeInPM[' .$key. ']: ' .$timeInPM[$key]. '<br>';
+      echo 'timeOutPM[' .$key. ']: ' .$timeOutPM[$key]. '<br>';
+      echo 'notes[' .$key. ']: ' .$notes[$key]. '<br>';
+      */
 
       // Calculate hours accumulated per Time Record
       $startAM = new DateTime($timeInAM[$key]);
       $sincestartAM = $startAM->diff(new DateTime($timeOutAM[$key]));
       $hrsAM[$key] = time_to_decimal($sincestartAM->h.':'.$sincestartAM->i);
+
       $startPM = new DateTime($timeInPM[$key]);
       $sincestartPM = $startPM->diff(new DateTime($timeOutPM[$key]));
       $hrsPM[$key] = time_to_decimal($sincestartPM->h.':'.$sincestartPM->i);
+
+      //echo $key. ': ' .$startAM->format('Y-m-d\TH:i:s'). '<br>';
+      //echo $key. ': ' .$hrsAM[$key]. ' hrsAM<br>';
+      //echo $key. ': ' .$hrsPM[$key]. ' hrsPM<br>';
+
       if ($workType[$key] == "Tax") {
         $hrsTax[$key] = $hrsAM[$key] + $hrsPM[$key];
         $hrsEdu[$key] = 0;
@@ -81,6 +96,9 @@
         $hrsEdu[$key] = $hrsAM[$key] + $hrsPM[$key];
       }
       $dailyLimit = $hrsAM[$key] + $hrsPM[$key];
+      //echo $key. ': ' .$hrsTax[$key]. ' hrsTax<br>';
+      //echo $key. ': ' .$hrsEdu[$key]. ' hrsEdu<br>';
+      //echo $key. ': ' .$dailyLimit. ' dailylimit<br>';
 
       // Detect Time Records that exceeds daily limit
       if ($dailyLimit > 24) {
@@ -147,7 +165,7 @@
           WHERE ID='.$timerecordId[$key].';';
       }
       // echo $trsql.'<br/>';
-      mysql_query($trsql);
+      mysqli_query($con,$trsql) or die(mysqli_error($con));
 
     } /* End for loop */
 
@@ -197,11 +215,15 @@
           notes, hrsTax, hrsEdu, payRate
         FROM timerecords WHERE timecardId='.$requestTimeCardId.';';
       // echo($trsql. '<br/>');
-      $trresult = mysql_query($trsql) or die(mysql_error());
+      $trresult = mysqli_query($con,$trsql) or die(mysqli_error($con));
 
       // Calculate Week 1 Regular and OT Hours
+      $subTotalRegWk1Tax = 0;
+      $subTotalRegWk1Edu = 0;
+      $subTotalOTWk1Tax = 0;
+      $subTotalOTWk1Edu = 0;
       for ($key = 0; $key <= 6; $key++) {
-        $trrow = mysql_fetch_array($trresult);
+        $trrow = mysqli_fetch_array($trresult);
         // Calculate Tax Hours
         if ($trrow['hrsTax'] + $subTotalRegWk1Tax + $subTotalRegWk1Edu <= 40) {
           // If sum of new record's Tax hrs. and Total Wk1 hrs. < 40, then continue accumulating Reg Tax hrs.
@@ -212,7 +234,7 @@
           $subTotalOTWk1Tax = $subTotalOTWk1Tax + $recOT;
           $subTotalRegWk1Tax = $subTotalRegWk1Tax + $recReg;
         }
-        // echo $key. ': ' .$trrow['hrsTax']. ' hrsTax, ' .$subTotalRegWk1Tax. ' RegWk1Tax, ' .$subTotalOTWk1Tax. ' OTWk1Tax<br>';
+        // echo $key. ': ' .$trrow['hrsTax']. ' hrsTax, ' .$subTotalRegWk1Tax. ' RegWk1Tax, ' .$subTotalOTWk1Tax. ' subTotalOTWk1Tax<br>';
         // Calculate Edu Hours
         if ($trrow['hrsEdu'] + $subTotalRegWk1Edu + $subTotalRegWk1Tax <= 40) {
           $subTotalRegWk1Edu = $subTotalRegWk1Edu + $trrow['hrsEdu'];
@@ -222,12 +244,16 @@
           $subTotalOTWk1Edu = $subTotalOTWk1Edu + $recOT;
           $subTotalRegWk1Edu = $subTotalRegWk1Edu + $recReg;
         }
-        // echo $key. ': ' .$trrow['hrsEdu']. ' hrsEdu, ' .$subTotalRegWk1Edu. ' RegWk1Edu, ' .$subTotalOTWk1Edu. ' OTWk1Edu<br>';
+        // echo $key. ': ' .$trrow['hrsEdu']. ' hrsEdu, ' .$subTotalRegWk1Edu. ' RegWk1Edu, ' .$subTotalOTWk1Edu. ' subtotalOTWk1Edu<br>';
       }
 
       // Calculate Week 2 Regular and OT Hours
+      $subTotalRegWk2Tax = 0;
+      $subTotalRegWk2Edu = 0;
+      $subTotalOTWk2Tax = 0;
+      $subTotalOTWk2Edu = 0;
       for ($key = 7; $key <= 13; $key++) {
-        $trrow = mysql_fetch_array($trresult);
+        $trrow = mysqli_fetch_array($trresult);
         // Calculate Tax Hours
         if ($trrow['hrsTax'] + $subTotalRegWk2Tax + $subTotalRegWk2Edu <= 40) {
           // If sum of new record's Tax hrs. and Total Wk2 hrs. < 40, then continue accumulating Reg Tax hrs.
@@ -284,8 +310,8 @@
         WHERE ID='.$requestTimeCardId.';';
       // echo $tcsql.'<br/>';
 
-      mysql_query($tcsql);
-      mysql_close($conn);
+      mysqli_query($con,$tcsql) or die(mysqli_error($con));
+      mysqli_close($con);
 
       //echo('Time Card ID: '.$requestTimeCardId.' successfully updated.<br/>');
       //echo('Go back to <a href="timerec_view.php?id='.$requestTimeCardId.'">Time Card Details.</a>');

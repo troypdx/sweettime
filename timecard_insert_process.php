@@ -25,8 +25,8 @@
       rate
     FROM employees WHERE ID='.$requestEmployeeId.';';
   //echo $empsql. '<br/>';
-  $empresult = mysql_query($empsql) or die(mysql_error());
-  $emprow = mysql_fetch_array($empresult) or die(mysql_error());
+  $empresult = mysqli_query($con,$empsql) or die(mysqli_error($con));
+  $emprow = mysqli_fetch_array($empresult) or die(mysqli_error($con));
 
 ?>
 
@@ -85,17 +85,17 @@
                 payPeriodStart
               FROM timecards WHERE employeeId='.$requestEmployeeId.';';
             //echo $tcsql.'<br>';
-            $tcresult = mysql_query($tcsql);
+            $tcresult = mysqli_query($con,$tcsql);
 
-            while($tcrow = mysql_fetch_array($tcresult)) {
+            while($tcrow = mysqli_fetch_array($tcresult)) {
               // Select all Time Records for the Time Cards related to each Time Card
               $trsql = 'SELECT
                     ID, timecardId, date
                   FROM timerecords
                   WHERE timecardId='.$tcrow['ID'].' AND date = \''.$dateCheck->format("Y-m-d").'\';';
               //echo $trsql. '<br>';
-              $trresult = mysql_query($trsql);
-              while($trrow = mysql_fetch_array($trresult)) {
+              $trresult = mysqli_query($con,$trsql);
+              while($trrow = mysqli_fetch_array($trresult)) {
                 if ($trrow['date'] == $dateCheck->format("Y-m-d")) {
                   // The select query found a Time Card with an overlapping pay period
                   $overlap = TRUE;
@@ -110,7 +110,7 @@
             print("<p>ERROR: The pay period starting date of, " .$payPeriodStart. ", overlaps the 2-week pay period of Time Card ID: " .$tcrow['ID']. ".
             <br/>SweetTime! cannot introduce Time Cards that overlap pay periods.<br/><br/>
             Choose a different date or consult with your Payroll Administrator if you need to modify an existing Time Card.</p>");
-            mysql_close($conn);
+            mysqli_close($con);
             print("<p>Return to <a href='timecard_view.php?id=" .$requestEmployeeId. "'>Time Card Administration</a></p>");
 
           } else {
@@ -120,7 +120,7 @@
               VALUES (
                 '.$requestEmployeeId.', \''.$payPeriodStart.'\', '.$emprow['rate'].');';
             //echo $tcsql.'<br/>';
-            mysql_query($tcsql) or die(mysql_error());
+            mysqli_query($con,$tcsql) or die(mysqli_error($con));
 
             // Obtain the new Time Card ID to be used with new Time Records
             $tcsql = 'SELECT ID,
@@ -128,8 +128,8 @@
               FROM timecards WHERE
                 employeeId = '.$requestEmployeeId.' AND payPeriodStart=\''.$payPeriodStart.'\';';
             //echo $tcsql.'<br/>';
-            $result = mysql_query($tcsql) or die(mysql_error());
-            $row = mysql_fetch_array($result);
+            $result = mysqli_query($con,$tcsql) or die(mysqli_error($con));
+            $row = mysqli_fetch_array($result);
 
             $paydate = new DateTime($payPeriodStart);
 
@@ -139,13 +139,13 @@
                   VALUES ('".$paydate->format('Y-m-d')."', ".$row['ID'].");";
               //echo $trsql . '<br/>';
               $paydate->add(new DateInterval('P1D'));
-              mysql_query($trsql) or die(mysql_error());
+              mysqli_query($con,$trsql) or die(mysqli_error($con));
             }
 
             // Alternative to header(); exit; below for troubleshooting this module
             //echo("Time Card ID: ".$row['ID']." for Employee ID: ".$requestEmployeeId." successfully added to the database.");
             //echo("<br/>Go back to Time Card View <a href='timecard_view.php?id=".$requestEmployeeId."'>main page.</a>");
-            mysql_close($conn);
+            mysqli_close($con);
 
             header("Location: timecard_view.php?id=$requestEmployeeId");
             exit;

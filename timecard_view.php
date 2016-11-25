@@ -30,8 +30,8 @@
       rate
     FROM employees WHERE ID='.$requestEmployeeId.';';
   //echo $empsql. '<br/>';
-  $empresult = mysql_query($empsql) or die(mysql_error());
-  $emprow = mysql_fetch_array($empresult) or die(mysql_error());
+  $empresult = mysqli_query($con,$empsql);
+  $emprow = mysqli_fetch_array($empresult);
 
   $tcsql = 'SELECT
         ID,
@@ -55,7 +55,7 @@
 
       FROM timecards WHERE employeeId=' .$requestEmployeeId. ';';
   //echo $tcsql. '<br/>';
-  $tcresult = mysql_query($tcsql) or die(mysql_error());
+  $tcresult = mysqli_query($con,$tcsql);
 
 ?>
 
@@ -146,7 +146,7 @@
           <th><br/><br/>Delete</th>
         </tr>
         <?php
-          while($row = mysql_fetch_array($tcresult)) {
+          while($row = mysqli_fetch_array($tcresult)) {
             print('<tr>
             <td>' .$row['ID']. '</td>
             <td>' .$row['payPeriodStart']. '</td>

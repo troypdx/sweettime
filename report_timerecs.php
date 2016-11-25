@@ -37,7 +37,7 @@
 
     FROM timerecords;';
 
-  $trresult = mysql_query($trsql) or die(mysql_error());
+  $trresult = mysqli_query($con,$trsql) or die(mysqli_error($con));
 ?>
 
 <!DOCTYPE html>
@@ -120,30 +120,7 @@
           </tr>
 
         <?php
-          while($trrow = mysql_fetch_array($trresult)) {
-
-            /*
-            // Obtain the Employee ID for the related Time Card
-            $tcsql = 'SELECT
-                  ID,
-                  employeeId
-                FROM timecards WHERE ID = ' .$trrow['timecardId']. ';';
-            echo $tcsql. '<br/>';
-            $tcresult = mysql_query($tcsql) or die(mysql_error());
-
-            // Obtain the Employee Name for the related Time Card
-            $empsql = 'SELECT
-                ID,
-                firstName,
-                lastName
-              FROM employees WHERE ID = ' .$tcrow['employeeId']. ';';
-            echo $empsql. '<br/>';
-            $empresult = mysql_query($empsql) or die(mysql_error());
-            $emprow = mysql_fetch_array($empresult);
-
-            .'<td>' .$emprow['firstName']. ' ' .$emprow['lastName']. '</td>'
-
-            */
+          while($trrow = mysqli_fetch_array($trresult)) {
             print('<tr><td>' .$trrow['ID']. '</td>'
             .'<td>' .$trrow['timecardId']. '</td>'
             .'<td>' .$trrow['date']. '</td>'

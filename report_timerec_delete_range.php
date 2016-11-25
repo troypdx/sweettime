@@ -10,7 +10,7 @@
   $timecardId = $_POST["timecardId"];
   $sql = 'DELETE FROM timerecords WHERE timecardId = ' .$timecardId. ';';
   // echo $sql. '<br/>';
-  mysql_query($sql) or die(mysql_error());
+  mysqli_query($con,$sql) or die(mysqli_error($con));
 
   //print("Time Records for Time Card: " .$timecardId. " deleted from the database.");
   //print("Return to the <a href='report_timerecs.php'>Time Record Administration</a>");

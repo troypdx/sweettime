@@ -16,14 +16,14 @@
 
   $tcsql = "DELETE FROM timecards WHERE ID = '" .$timecardId. "';";
   //echo($tcsql. '<br/>');
-  mysql_query($tcsql) or die(mysql_error());
+  mysqli_query($con,$tcsql) or die(mysql_error($con));
 
   $trsql = "DELETE FROM timerecords WHERE timecardId = '" .$timecardId. "';";
-  // echo($trsql. '<br/>');
-  mysql_query($trsql) or die(mysql_error());
+  //echo($trsql. '<br/>');
+  mysqli_query($con,$trsql) or die(mysql_error($con));
 
-  // print("Timecard: " .$timecardId. " for Employee: " .$employeeId. " deleted from the database.<br/>");
-  // print("Return to <a href='timecard_view.php?id=" .$employeeId. "'>main page.</a><br/>");
+  //print("Timecard: " .$timecardId. " for Employee: " .$employeeId. " deleted from the database.<br/>");
+  //print("Return to <a href='timecard_view.php?id=" .$employeeId. "'>main page.</a><br/>");
 
   header("Location: timecard_view.php?id=$employeeId");
   exit;

@@ -65,9 +65,9 @@
         $timecardId.");";
 
         //echo $sql.'<br/>';
-        mysql_query($sql);
+        mysqli_query($con,$sql);
   }
-  mysql_close($conn);
+  mysqli_close($conn);
 
   /*
   echo("<br/>Time Record(s) for Time Card: ".$timecardId." successfully added to the database.");

@@ -23,7 +23,7 @@
     'Two Week Total Tax + Edu'));
 
   // Fetch the data
-  //$rows = mysql_query('SELECT field1,field2,field3 FROM table');
+  //$rows = mysqli_query($con,'SELECT field1,field2,field3 FROM table');
 
   // Fetch all Time Cards for the requested Pay Period Start date
   $tcsql = 'SELECT ID,
@@ -35,15 +35,15 @@
       twoWeekTotalOTEdu,
       twoWeekTotalComb FROM timecards WHERE payPeriodStart=\''.$payPeriodStart.'\';';
   //echo $tcsql.'<br/>';
-  $tcresult = mysql_query($tcsql);
+  $tcresult = mysqli_query($con,$tcsql);
 
   // Loop over the rows, outputting them
-  //while ($row = mysql_fetch_assoc($rows)) fputcsv($output, $row);
+  //while ($row = mysqli_fetch_assoc($rows)) fputcsv($output, $row);
 
-  while ($tcrow=mysql_fetch_assoc($tcresult)) fputcsv($output, $tcrow);
+  while ($tcrow=mysqli_fetch_assoc($tcresult)) fputcsv($output, $tcrow);
 
   fclose($output);
-  mysql_close($conn);
+  mysqli_close($con);
 
   // echo("Return to <a href='report_timecards.php'>Report Time Cards</a>.");
 

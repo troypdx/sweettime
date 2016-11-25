@@ -37,8 +37,8 @@
 
   //echo $sql. '<br/>';
 
-  mysql_query($sql);
-  mysql_close($conn);
+  mysqli_query($con,$sql);
+  mysqli_close($con);
 
   //echo($last . " successfully added to the database.");
   //echo("<br/>Go back to <a href='emp_view.php'>main page.</a>")

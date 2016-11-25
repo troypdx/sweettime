@@ -26,7 +26,7 @@
       adminFlag,
       rate
     FROM employees;';
-  $result = mysql_query($sql) or die(mysql_error());
+  $result = mysqli_query($con,$sql);
 ?>
 
 <html>
@@ -95,7 +95,7 @@
             <th><br/>Delete</th>
           </tr>
           <?php
-            while($row = mysql_fetch_array($result)) {
+            while($row = mysqli_fetch_array($result)) {
               /* Production Version
               print('<tr>
               <td>' .$row['ID']. '</td>

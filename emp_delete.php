@@ -13,23 +13,23 @@
   // Get any Time Cards related to the Employee
   $tcsql = 'SELECT ID FROM timecards WHERE employeeId = ' .$employeeId. ';';
   // echo $tcsql. '<br/>';
-  // $tcresult = mysql_query($tcsql) or die(mysql_error());
-  $tcresult = mysql_query($tcsql);
+  // $tcresult = mysqli_query($con,$tcsql) or die(mysqli_error($con));
+  $tcresult = mysqli_query($con,$tcsql);
   if ($tcresult) {
     // Delete Time Records related to each Time Card
-    while ($tcrow = mysql_fetch_array($tcresult)) {
+    while ($tcrow = mysqli_fetch_array($tcresult)) {
       $trsql = 'DELETE FROM timerecords WHERE timecardId = ' .$tcrow['ID']. ';';
       //echo $trsql. '<br/>';
-      mysql_query($trsql) or die(mysql_error());
+      mysqli_query($con,$trsql) or die(mysqli_error($con));
     }
     $tcsql = 'DELETE FROM timecards WHERE employeeId = ' .$employeeId. ';';
     //echo $tcsql. '<br/>';
-    mysql_query($tcsql) or die(mysql_error());
+    mysqli_query($con,$tcsql) or die(mysqli_error($con));
   }
 
   $empsql = 'DELETE FROM employees WHERE ID = ' .$employeeId. ';';
   //echo $empsql. '<br/>';
-  mysql_query($empsql) or die(mysql_error());
+  mysqli_query($con,$empsql) or die(mysqli_error($con));
 
   //print("Employee " .$employeeId. " deleted from the database. <br/>");
   //print("Return to <a href='emp_view.php'>main page.</a>");

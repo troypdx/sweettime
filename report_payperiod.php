@@ -34,7 +34,7 @@
         twoWeekTotalComb
       FROM timecards WHERE payPeriodStart=\''.$payPeriodStart.'\';';
   // echo $tcsql;
-  $tcresult = mysql_query($tcsql) or die(mysql_error());
+  $tcresult = mysqli_query($con,$tcsql) or die(mysqli_error());
 
 ?>
 
@@ -123,7 +123,7 @@
         </tr>
 
         <?php
-          while($tcrow = mysql_fetch_array($tcresult)) {
+          while($tcrow = mysqli_fetch_array($tcresult)) {
             $empsql = 'SELECT
                 ID,
                 firstName,
@@ -135,8 +135,8 @@
                 rate
               FROM employees WHERE ID = ' .$tcrow['employeeId']. ';';
             // echo $empsql. '<br/>';
-            $empresult = mysql_query($empsql) or die(mysql_error());
-            $emprow = mysql_fetch_array($empresult);
+            $empresult = mysqli_query($con,$empsql) or die(mysqli_error());
+            $emprow = mysqli_fetch_array($empresult);
 
             print('<tr><td>' .$tcrow['ID']. '</td>'
             . '<td>' .$emprow['firstName']. ' ' .$emprow['lastName']. '</td>'
